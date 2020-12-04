@@ -1,0 +1,13 @@
+.criminalsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .criminal-info {
+    border: 1px dotted black;
+    flex: 0 32%;
+    height: 145px;
+    margin-bottom: 2%;
+    
+  }
