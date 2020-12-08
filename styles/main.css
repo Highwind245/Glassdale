@@ -7,7 +7,16 @@
   .criminal-info {
     border: 1px dotted black;
     flex: 0 32%;
-    height: 145px;
     margin-bottom: 2%;
-    
+  }
+
+  .note {
+    border: 1px dotted black;
+    flex: 0 32%;
+    margin-bottom: 2%;
+  }
+  .noteList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
