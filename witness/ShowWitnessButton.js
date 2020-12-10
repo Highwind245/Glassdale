@@ -1,4 +1,4 @@
-const contentTarget = document.querySelector(".witnessList")
+const contentTarget = document.querySelector(".witnessListButton")
 const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("click", clickEvent => {
