@@ -25,24 +25,23 @@ eventHub.addEventListener("change", changeEvent => {
 
 export const OfficerSelect = () => {
     getOfficers()
-    .then( () => {
-        const officers = useOfficers()
-        render(officers)
-    })
+        .then(() => {
+            const officers = useOfficers()
+            render(officers)
+        })
 }
 
 const render = officerCollection => {
-    
+
     contentTarget.innerHTML = `
         <select class="dropdown" id="officerSelect">
             <option value="0">Please select a officer...</option>
-            ${
-                officerCollection.map((officer) => `
+            ${officerCollection.map((officer) => `
                     <option value="${officer.id}">
                         ${officer.name}
                     </option>
                  `)
-            }
+        }
         </select>
     `
 }

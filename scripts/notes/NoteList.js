@@ -14,7 +14,7 @@ eventHub.addEventListener("noteStateChanged", () => {
     NoteList()
 })
 const render = (noteArray) => {
-    const allNotesConvertedToStrings = noteArray.map( (note) => NoteHTMLConverter(note)).join("")
+    const allNotesConvertedToStrings = noteArray.map((note) => NoteHTMLConverter(note)).join("")
 
     contentTarget.innerHTML = allNotesConvertedToStrings
 }

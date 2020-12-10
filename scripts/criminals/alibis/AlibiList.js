@@ -1,7 +1,6 @@
 import { useCriminals } from "../CriminalDataProvider.js";
-import { AlibiHTMLConverter } from "./Alibi.js";
+import { AlibiPopupConverter } from "./AlibiPopup.js";
 
-const contentTarget = document.querySelector(".associates")
 const eventHub = document.querySelector(".criminalsContainer")
 
 eventHub.addEventListener('showAssociatesClicked', event => {
@@ -11,15 +10,7 @@ eventHub.addEventListener('showAssociatesClicked', event => {
         const chosenCriminal = criminals.find((criminal) => criminal.id === parseInt(event.detail.criminalThatWasChosen))
 
         const associates = chosenCriminal.known_associates
-        contentTarget.innerHTML = associates.map(associates => AlibiHTMLConverter(associates)).join("")
+        associates.map(associates => AlibiPopupConverter(associates)).join("")
     }
 }
 )
-
-
-export const criminalList = () => {
-    getCriminals().then(() => {
-        let perps = useCriminals()
-        render(perps)
-    })
-}

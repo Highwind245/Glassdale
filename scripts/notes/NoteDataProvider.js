@@ -13,7 +13,7 @@ export const getNotes = () => {
     return fetch('http://localhost:8088/notes')
         .then(response => response.json())
         .then(parsedNotes => {
-             notes = parsedNotes
+            notes = parsedNotes
         })
 
 }
@@ -27,6 +27,6 @@ export const saveNote = note => {
         },
         body: stringifiedObj
     })
-    .then(getNotes)
-    .then(dispatchStateChangeEvent)
+        .then(getNotes)
+        .then(dispatchStateChangeEvent)
 }
