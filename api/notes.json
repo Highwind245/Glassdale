@@ -3,23 +3,9 @@
     {
       "author": "Josh",
       "text": "Identity Theft",
-      "suspect": "Joshua",
+      "criminalId": 1,
       "timestamp": 1607447603673,
       "id": 1
-    },
-    {
-      "author": "Party Rockers",
-      "text": "e Tonight",
-      "suspect": "In the Hous",
-      "timestamp": 1607456612599,
-      "id": 2
-    },
-    {
-      "author": "jas",
-      "text": "helped me cheat on cod test\n",
-      "suspect": "dad",
-      "timestamp": 1607562316470,
-      "id": 3
     }
   ]
 }

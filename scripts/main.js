@@ -8,9 +8,10 @@ import "./criminals/alibis/AlibiList.js"
 import { ShowWitnessesButton } from "../witness/ShowWitnessButton.js"
 import "../witness/WitnessList.js"
 
-NoteForm()
+
 CriminalList()
 ConvictionSelect()
 OfficerSelect()
 ShowNoteButton()
+NoteForm()
 ShowWitnessesButton()
