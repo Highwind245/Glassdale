@@ -1,52 +1,51 @@
 import { saveNote } from "./NoteDataProvider.js"
-import { useCriminals, getCriminals } from "../criminals/CriminalDataProvider.js";
+import { useCriminals, getCriminals } from "../criminals/CriminalDataProvider.js"
 
 const contentTarget = document.querySelector(".noteFormContainer")
 const eventHub = document.querySelector(".container")
 
-
 // Handle browser-generated click event in component
 eventHub.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "saveNote") {
-        const author = document.querySelector("#input__name").value
-        const text = document.querySelector("#input__reason").value
-        const criminalId = parseInt(document.querySelector("#input_suspect").value)
+  if (clickEvent.target.id === "saveNote") {
 
-        // Make a new object representation of a note
-        const newNote = {
-            // Key/value pairs here
-            author: author,
-            text: text,
-            criminalId: criminalId,
-            timestamp: Date.now(),
-        }
+      // Need to gather the data from the form
+      const author = document.querySelector("#author").value
+      const text = document.querySelector("#text").value
+      const criminalId = parseInt(document.querySelector("#suspect").value)
 
-        // Change API state and application state
-        saveNote(newNote)
-    }
+
+      // Make a new object representation of a note
+      const newNote = {
+        author: author,
+        text: text,
+        criminalId: criminalId,
+        timestamp: Date.now()
+      }
+      // Change API state and application state
+      saveNote(newNote)
+  }
 })
-
 
 const render = () => {
     const criminalsCollection = useCriminals()
-    contentTarget.innerHTML = `
-        <input type="text" id="input__name">Your Name</input>
-        <textarea id="input__reason" placeholder="Description"></textarea>
 
-        <select class="dropdown" id="input_suspect">
+    contentTarget.innerHTML = `
+      <section class="noteForm">
+        <input type="text" id="author" placeholder="author name">
+        <textarea id="text" placeholder="note text"></textarea>
+        <select class="dropdown" id="suspect">
             <option value="0">Please select a suspect...</option>
             ${
                 criminalsCollection.map(
-                    (criminal) => `
-                    <option value="${criminal.id}">
-                        ${criminal.name}
+                  (criminal) => `
+                    <option value=${criminal.id}>
+                      ${criminal.name}
                     </option>
-                 `)
-        }
+                `)
+            }
         </select>
-    
-
         <button id="saveNote">Save Note</button>
+      </section>
     `
 }
 

@@ -15,11 +15,11 @@ export const getNotes = () => {
         .then(parsedNotes => {
             notes = parsedNotes
         })
-
 }
 
 export const saveNote = note => {
     let stringifiedObj = JSON.stringify(note)
+    debugger
     return fetch('http://localhost:8088/notes', {
         method: "POST",
         headers: {
@@ -27,14 +27,14 @@ export const saveNote = note => {
         },
         body: stringifiedObj
     })
-        .then(getNotes)
-        .then(dispatchStateChangeEvent)
+    .then(getNotes)
+    .then(dispatchStateChangeEvent)
 }
 
 export const deleteNote = noteId => {
-    return fetch(`http://localhost:8088/notes/${noteId}`, {
-        method: "DELETE"
-    })
-        .then(getNotes)
-        .then(dispatchStateChangeEvent)
+  return fetch(`http://localhost:8088/notes/${noteId}`, {
+      method: "DELETE"
+  })
+  .then(getNotes)
+  .then(dispatchStateChangeEvent)
 }

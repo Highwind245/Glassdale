@@ -1,28 +1,31 @@
-export const Criminal = (criminal) => {
-    return `
-        <section class="criminal-info">
-            <ul>
-                <h2 class="criminal__name">${criminal.name}</h2>
-                <li class="criminal__age">Age: ${criminal.age}</li>
-                <li class="criminal__crime">Crime: ${criminal.conviction}</li>
-                <li class="criminal__termStart">Term start: ${new Date(criminal.incarceration.start).toLocaleDateString('en-US')}</li>
-                <li class="criminal__termEnd">Term end: ${new Date(criminal.incarceration.end).toLocaleDateString('en-US')}</li>
-            </ul>
-            <button id="associates--${criminal.id}">Associate Alibis</button>
-        </section>`
-}
+const eventHub = document.querySelector(".container")
 
-const eventHub = document.querySelector(".criminalsContainer")
-
-eventHub.addEventListener("click", clickEvent => {
-    const [splitId, indexOne] = clickEvent.target.id.split("--")
-
-    if ("associates" === splitId) {
-        const customEvent = new CustomEvent("showAssociatesClicked", {
-            detail: {
-                criminalThatWasChosen: indexOne
-            }
-        })
-        eventHub.dispatchEvent(customEvent)
-    }
+eventHub.addEventListener("click", (event) => {
+  if (event.target.id.includes("associates--")) {
+    const customEvent = new CustomEvent("associatesBtnClicked", {
+      detail: {
+        clickedCriminalId: event.target.id.split("--")[1]
+      }
+    })
+    eventHub.dispatchEvent(customEvent)
+  }
 })
+
+// Now Criminal also has a paramenter for the criminal's facilities
+export const Criminal = (criminalObj, facilities) => {
+  return `
+    <article class="criminal">
+      <h2>${criminalObj.name}</h2>
+      <div>Crime: ${criminalObj.conviction}</div>
+      <div>Term Start: ${new Date(criminalObj.incarceration.start).toLocaleDateString('en-US')}</div>
+      <div>Term End: ${new Date(criminalObj.incarceration.end).toLocaleDateString('en-US')}</div>
+      <div>
+        <h2>Facilities</h2>
+        <ul>
+            ${facilities.map(f => `<li>${f.facilityName}</li>`).join("")}
+        </ul>
+      </div>
+      <button id="associates--${criminalObj.id}">Associate Alibis</button>
+    </article>
+  `
+}
